@@ -1,0 +1,80 @@
+#INICIALIZADOR
+
+SELECTIONINI="¿Realmente quieres seleccionar el predeterminado?"
+SELECTIONINI2="Presiona ENTER para continuar o Q para volver..."
+SELECTIONINI3="Por favor, ingresa un valor válido"
+SELECTIONINI4="Presiona ENTER para intentarlo de nuevo..."
+SELECTIONINI5="Para finalizar, indica tu nombre de usuario de Steam (no tu apodo, tu nombre de usuario):"
+
+#MENU PRINCIPAL
+
+MENU="======================================
+    ADMINISTRADOR DE JUEGOS STEAM
+======================================
+1- Instalar nuevos juegos
+2- Biblioteca
+3- Workshop de Steam
+4- Reconfigurar idioma y nombre de usuario
+0- Cancelar operación
+======================================"
+
+CHOOSE="Elige una opción:"
+
+ERROR_MESSAGE1="El archivo de la instancia de instalación de juegos no se encontró en $SOURCE"
+ERROR_MESSAGE2="Presiona ENTER para intentarlo de nuevo..."
+ERROR_MESSAGE3="El archivo de la instancia de instalación de mods no se encontró en $SOURCE"
+ERROR_MESSAGE4="El archivo de la instancia de tu biblioteca no se encontró en $SOURCE"
+ERROR_INVALID="Por favor, introduce un valor válido"
+ERROR_INVALID2="Entrada no válida, reiniciando el menú..."
+SECURITYCONFIG="¿Estás seguro de que quieres borrar el idioma configurado y el usuario de Steam?"
+SECURITYCONFIG2="Escribe RECONFIGURAR para confirmar:"
+RECONFIGURE="RECONFIGURAR"
+SENDINGUSER="Redirigiendo al menú de configuración..."
+
+#BIBLIOTECA
+
+BIBLIOTECA="========================================
+           BIBLIOTECA STEAM
+========================================"
+BIBLIOTECA2="0- Volver al menú principal
+========================================"
+BIBLIOTECA3="El número no corresponde a un juego de la lista"
+ENTERLIBRARY="Presione ENTER para intentarlo de nuevo..."
+
+SUBMENU1="========================================"
+SUBMENU2="----------------------------------------"
+PLATFORMECHO="Plataforma:"
+NAMECHO="Gestionando:"
+SUBMENULIBOPTIONS="1- Iniciar juego
+2- Actualizar juego
+3- Desinstalar juego
+0- Volver al menú principal"
+ATTCONFIRMAR="¿Actualizar el juego? (S/N):"
+DELETECONFIRMAR="¿Realmente quieres eliminar"
+DELETECONFIRMAR2="? (S/N):"
+DELETE="DESINSTALAR"
+DELETAR="Para confirmar la eliminación, escribe DESINSTALAR:"
+INVALIDDELETE="El valor ingresado no es válido, presiona ENTER para repetir el proceso..."
+GAMEERROR="El juego no se encontró en"
+
+#INSTALADOR
+
+INSTALADOR="=========================================
+      INSTALADOR DE JUEGOS DE STEAM
+========================================="
+INSTALADOR2="Escribe el APPID de un juego de tu biblioteca"
+INSTALADOR3="(o 0 para volver al menú):"
+
+INVALID_INSTALL="El AppID ingresado no se encontró en la base de datos de Steam"
+
+CONFIRM_GAME1="¿El juego es"
+CONFIRM_GAME2="? (S/N): "
+CHOOSE_PLATFORM="¿Usar versión de Linux o Windows? (L/W): "
+APPLY_GOLDBERG="¿Aplicar Goldberg Emulator? (S/N): "
+INSTALADO="El juego se ha instalado correctamente, presiona ENTER para volver al menú"
+ERROINSTALACAO="Algo salió mal con tu instalación, intenta reconfigurar"
+ERROINSTALACAO2="tu nombre de usuario de Steam configurado en la primera ejecución"
+ENTERINSTALACAO="Presione Enter para volver al menú..."
+GOLDOPTION="¿Deseas aplicar Goldberg Emulator? (S/N):"
+GOLDSUCCESS="Goldberg Emulator aplicado con éxito"
+GOLDFAIL="No se pudo aplicar Goldberg Emulator (No se encontró ninguna API)"
