@@ -20,7 +20,10 @@ if [ -z "$USER_STEAM" ]; then
 
 	chmod +x "$SCRIPT_DIR"/source/*.sh
 	chmod +x "$UMU/umu-run"
-	
+
+while true; do
+clear
+
 	echo "        Language selection"
 	echo "==================================="
 	echo "1- English"
@@ -28,82 +31,116 @@ if [ -z "$USER_STEAM" ]; then
 	echo "3- Español"
 	echo "4- System Default"
 	echo "==================================="
-	read -p "Select a language to start: " OPCAO
+	read -p "Select a language to start: " OPTION
 
-	case "$OPCAO" in
+	case "$OPTION" in
 		1)
 		echo "Do you really want ENGLISH?"
-		read -rsn1 -p "Press ENTER to continue or Q to go back... " TECLA
+		read -rsn1 -p "Press ENTER to continue or Q to go back... " KEY
 
-			if [[ "$TECLA" == "q" || "$TECLA" == "Q" ]]; then
-    			exec "$0"
+			if [[ "$KEY" == "q" || "$KEY" == "Q" ]]; then
+			continue
 			fi
 	
 		LANGUAGE="en"
 		
 		sed -i "s|^LANGUAGE=.*|LANGUAGE=\"$LANGUAGE\"|" "$SCRIPT_DIR/source/TXT/configpath.conf"
 		
+		break
+		
 		;;
 	
 		2)
 		echo "Você realmente quer PORTUGUÊS?"
-		read -rsn1 -p "Aperte ENTER para continuar ou Q para voltar... " TECLA
+		read -rsn1 -p "Pressione ENTER para continuar ou Q para voltar... " KEY
 
-			if [[ "$TECLA" == "q" || "$TECLA" == "Q" ]]; then
-			exec "$0"
+			if [[ "$KEY" == "q" || "$KEY" == "Q" ]]; then
+			continue
 			fi
 	
 		LANGUAGE="pt"
 		
 		sed -i "s|^LANGUAGE=.*|LANGUAGE=\"$LANGUAGE\"|" "$SCRIPT_DIR/source/TXT/configpath.conf"
 		
+		break
+		
 		;;
 	
 		3)
 		echo "¿Realmente quieres ESPAÑOL?"
-		read -rsn1 -p "Presiona ENTER para continuar o Q para volver... " TECLA
+		read -rsn1 -p "Presiona ENTER para continuar o Q para volver... " KEY
 
-			if [[ "$TECLA" == "q" || "$TECLA" == "Q" ]]; then
-    			exec "$0"
+			if [[ "$KEY" == "q" || "$KEY" == "Q" ]]; then
+    			continue
 			fi
 		
 		LANGUAGE="es"
 		
 		sed -i "s|^LANGUAGE=.*|LANGUAGE=\"$LANGUAGE\"|" "$SCRIPT_DIR/source/TXT/configpath.conf"
 		
+		break
+		
 		;;
 	
 		4)
 		echo "$SELECTIONINI"
 		LANGUAGE="${LANG%%_*}"
-	
-		read -rsn1 -p "$SELECTIONINI2 " TECLA
-	
-			if [[ "$TECLA" == "q" || "$TECLA" == "Q" ]]; then
+
+		read -rsn1 -p "$DEFAULT_INI " KEY
+
+			if [[ "$KEY" == "q" || "$KEY" == "Q" ]]; then
 			unset LANGUAGE
-    			exec "$0"
+			continue
 			fi
+		
+		break
 		
 		;;
 		*)
 		LANGUAGE="${LANG%%_*}"
-		echo "$SELECTIONINI3"
-			read -p "$SELECTIONINI4"
+		echo "$INVALID_VALUE"
+			read -p "$ENTER_RETRY"
 			unset LANGUAGE
-			clear
-			exec "$0"
+			continue
+		;;
 	esac
 
 clear
+
+done
+
+unset OPTION
 
 #NICKNAME
 
 source "$SCRIPT_DIR/source/config.sh"
 
-	read -p "$SELECTIONINI5 " USER_STEAM
-	sed -i "s|^USER_STEAM=.*|USER_STEAM=\"$USER_STEAM\"|" "$SCRIPT_DIR/source/TXT/configpath.conf"
-	sleep 1
+while true; do
+	
+	clear
+	read -p "$USERNAME_INI " USER_STEAM
+	
+	read -p "$USERCONFIRMATION_INI $USER_STEAM? $YES_NOT: " OPTION
+	
+		if [[ "$OPTION" == [YySs] ]]; then
+	
+			sed -i "s|^USER_STEAM=.*|USER_STEAM=\"$USER_STEAM\"|" "$SCRIPT_DIR/source/TXT/configpath.conf"
+			sleep 1
+			break
+			
+		elif [[ "$OPTION" == [Nn] ]]; then
+		
+			continue
+			
+		else
+			echo "$INVALID_VALUE"
+			read -p "$ENTER"
+			continue
+		fi
+
+done
+
 fi
 
 clear
-exec "$SCRIPT_DIR/source/Steam.sh"
+exec "$FIRST"

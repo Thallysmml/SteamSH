@@ -1,0 +1,79 @@
+#GLOBAL
+
+ENTER="Press ENTER to continue"
+ENTER_Q="Press ENTER to continue or Q to go back..."
+ENTER_RETRY="Press ENTER to try again..."
+ENTER_MENU="Press ENTER to return to the menu..."
+INVALID_VALUE="Please enter a valid value"
+CHOOSE="Choose an option:"
+YES_NOT="(Y/N)"
+GLOBAL_SEC="Invalid input, restarting menu..."
+
+#INITIALIZER
+
+DEFAULT_INI="Do you really want to select the default?"
+USERNAME_INI="Finally, enter your Steam username (not your display name, your account username):"
+USERCONFIRMATION_INI="Confirm username:"
+
+#MAIN MENU
+
+MENU="=======================================
+          STEAM GAME MANAGER
+=======================================
+1- Install new games
+2- Library
+3- Steam Workshop
+4- Reconfigure language and nickname
+0- Cancel operation
+======================================="
+
+MENU_ERROR="The instance file was not found in"
+MENU_SECURITY="Are you sure you want to delete the configured language and Steam nickname?"
+MENU_SECURITY2="Type RECONFIGURE to confirm:"
+
+RECONFIGURE="RECONFIGURE"
+
+#LIBRARY
+
+LIB_DECO="========================================="
+LIB_DECO2="-----------------------------------------"
+LIB_NAME="              STEAM LIBRARY"
+LIB_BACKTO="0- Back to main menu"
+LIB_PLAT="Platform:"
+LIB_GAME="Managing:"
+LIB_SUBOPTION="1- Launch game
+2- Update game
+3- Uninstall game
+0- Back to main menu"
+
+LIB_UPD="Update game? (Y/N):"
+
+LIB_DEL="Do you really want to delete"
+LIB_DEL_CONFIRM="To confirm deletion, type UNINSTALL:"
+LIB_ERROR="The game was not found in"
+
+DELETE="UNINSTALL"
+
+#INSTALLER
+
+INS="=========================================
+           STEAM GAME INSTALLER
+========================================="
+INS_1="0- Main Menu
+========================================="
+INS_2="Enter the APPID of a game from your STEAM library:"
+
+#ENGINE
+
+ENG_SUCCESS="The game was installed successfully, press ENTER to return to the menu"
+
+ENG_GOLDOPT="Do you want to apply Goldberg Emulator? (Y/N):"
+ENG_GOLDTRUE="Goldberg Emulator applied successfully"
+ENG_GOLDFALSE="Could not apply Goldberg Emulator (No API found)"
+
+ENG_INVALID="The entered AppID was not found in the Steam database"
+ENG_CONFIRM="Is the game"
+ENG_PLAT="Use Linux or Windows version? (L/W): "
+
+ENG_ERRO="Something went wrong with your installation, try"
+ENG_ERRO2="reconfiguring your Steam username set on first run"

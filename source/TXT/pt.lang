@@ -1,0 +1,81 @@
+#GLOBAL
+
+ENTER="Pressione ENTER para continuar"
+ENTER_Q="Pressione ENTER para continuar ou Q para voltar..."
+ENTER_RETRY="Pressione ENTER para tentar novamente..."
+ENTER_MENU="Pressione ENTER para voltar ao menu..."
+INVALID_VALUE="Por favor, insira um valor válido"
+CHOOSE="Escolha uma opção:"
+YES_NOT="(S/N)"
+GLOBAL_SEC="Entrada inválida, reiniciando menu..."
+
+#INICIALIZADOR
+
+DEFAULT_INI="Você realmente seleciona o padrão?"
+USERNAME_INI="Para finalizar, indique o seu username da Steam (não é apelido, é username):"
+USERCONFIRMATION_INI="Confirmar username:"
+
+#MENU PRINCIPAL
+
+MENU="=======================================
+      GERENCIADOR DE JOGOS STEAM
+=======================================
+1- Instalar novos jogos
+2- Biblioteca
+3- Steam Workshop
+4- Reconfigurar língua e nickname
+0- Cancelar operação
+======================================="
+
+MENU_ERROR="O arquivo da instância não foi encontrado em"
+MENU_SECURITY="Você tem certeza que quer apagar a linguagem configurada e o nickname Steam?"
+MENU_SECURITY2="Digite RECONFIGURAR para confirmar:"
+
+RECONFIGURE="RECONFIGURAR"
+
+#BIBLIOTECA
+
+LIB_DECO="========================================="
+LIB_DECO2="-----------------------------------------"
+LIB_NAME="            BIBLIOTECA STEAM"
+LIB_BACKTO="0- Voltar ao menu principal"
+LIB_PLAT="Plataforma:"
+LIB_GAME="Gerenciando:"
+LIB_SUBOPTION="1- Abrir o jogo
+2- Atualizar o jogo
+3- Desinstalar o jogo
+0- Voltar para o menu principal"
+
+LIB_UPD="Atualizar o jogo? (S/N):"
+
+LIB_DEL="Você realmente quer deletar"
+LIB_DEL_CONFIRM="Para confirmar a exclusão digite DESINSTALAR:"
+LIB_ERROR="O jogo não foi encontrado em"
+
+DELETE="DESINSTALAR"
+
+#INSTALADOR
+
+INS="=========================================
+        INSTALADOR DE JOGOS STEAM
+========================================="
+INS_1="0- Menu Principal
+========================================="
+INS_2="Insira a APPID de um jogo da sua biblioteca STEAM:"
+
+#ENGINE
+
+ENG_SUCCESS="O jogo foi instalado com sucesso, pressione ENTER para voltar ao menu"
+
+ENG_GOLDOPT="Deseja aplicar Goldberg Emulator? (S/N):"
+ENG_GOLDTRUE="Goldberg Emulator aplicado com sucesso"
+ENG_GOLDFALSE="Não foi possível aplicar o Goldberg Emulator (Nenhuma API encontrada)"
+
+ENG_INVALID="O AppID inserido não foi encontrado na base de dados da Steam"
+ENG_CONFIRM="O jogo é"
+ENG_PLAT="Utilizar versão Linux ou Windows? (L/W): "
+
+ENG_ERRO="Alguma coisa deu errado na sua instalação, tente"
+ENG_ERRO2="reconfigurar seu username Steam configurado na primeira execução"
+
+
