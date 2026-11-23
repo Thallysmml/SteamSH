@@ -7,6 +7,13 @@ source "$SOURCE/config.sh"
 source "$SOURCE/engine.sh"
 
 
+	update_conf(){
+		awk -F'|' -v id="$APPID" -v name="$GAME_NAME" -v plat="$PLATFORM" -v exe="$CUSTOM_EXE" -v args="$ARGS" '
+			$1 == id { print id "|" name "|" plat "|" exe "|" args; next }
+			{ print }
+		' "$GAMES/library.conf" > "$GAMES/library.conf.tmp" && mv "$GAMES/library.conf.tmp" "$GAMES/library.conf"
+	}
+
 	run_game(){
 	
 		if [ "$PLATFORM" == "Linux" ]; then
@@ -133,14 +140,14 @@ source "$SOURCE/engine.sh"
 				read -p "$LIB_CUSTOMEXE " OPTION
 					if [[ "$OPTION" == "$CUSTOM_EXEDEL" ]]; then
 						unset CUSTOM_EXE
-						sed -i "s#^${APPID}|.*#${APPID}|${GAME_NAME}|${PLATFORM}|${CUSTOM_EXE}|${ARGS}#" "$GAMES/library.conf"
+						update_conf
 						break
 					elif [[ "$OPTION" == "$CUSTOM_EXENEW" ]]; then
 						read -p "$LIB_CUSTOMEXE2 $GAME_NAME? $YES_NOT: " OPTION
 							if [[ "$OPTION" == [YySs] ]]; then
 								unset CUSTOM_EXE
 								read -p "$LIB_CUSTOMEXE3 " CUSTOM_EXE
-								sed -i "s#^${APPID}|.*#${APPID}|${GAME_NAME}|${PLATFORM}|${CUSTOM_EXE}|${ARGS}#" "$GAMES/library.conf"
+								update_conf
 								break
 							elif [[ "$OPTION" == [Nn] ]]; then
 								break
@@ -163,7 +170,7 @@ source "$SOURCE/engine.sh"
 						if [[ "$OPTION" == [YySs] ]]; then
 							echo "$LIB_ARGSHINT"
 							read -p "$LIB_ARGSALERT: " ARGS
-							sed -i "s#^${APPID}|.*#${APPID}|${GAME_NAME}|${PLATFORM}|${CUSTOM_EXE}|${ARGS}#" "$GAMES/library.conf"
+							update_conf
 							break
 						elif [[ "$OPTION" == [Nn] ]]; then
 							break
