@@ -6,6 +6,53 @@ SOURCE="$(dirname "$(readlink -f "${BASH_SOURCE}")")"
 source "$SOURCE/config.sh"
 source "$SOURCE/engine.sh"
 
+
+	run_game(){
+	
+		if [ "$PLATFORM" == "Linux" ]; then
+			chmod +x "$TARGET"
+			CMD="\"$TARGET\""
+		elif [ "$PLATFORM" == "Windows" ]; then
+			CMD="WINEPREFIX=\"$UMU/prefixes/$GAME_DIR\" GAMEID=\"umu-$APPID\" UMU_NO_RUNTIME=1 \"$UMU/umu-run\" \"$TARGET\""
+		fi
+
+		if [[ "$ARGS" == *"%command%"* ]]; then
+			FINAL_CMD="${ARGS/\%command\%/$CMD}"
+		else
+			FINAL_CMD="$CMD $ARGS"
+		fi
+			(cd "$(dirname "$TARGET")" && eval "$FINAL_CMD")
+
+
+	}
+	
+	suboption_game(){
+	
+		if [ -d "$GAMES/$GAME_DIR" ]; then
+			ARCHIVE="$(uname -m)"
+			if [ "$PLATFORM" == "Linux" ]; then
+				[[ "$ARCHIVE" == "x86_64" ]] && TIPO="ELF 64-bit" || TIPO="ELF 32-bit"
+				TARGET=$(find "$GAMES/$GAME_DIR" -maxdepth 2 -type f -executable ! -name "*.so*" ! -name "*.dll" -printf "%s %p\n" | sort -rn | cut -d' ' -f2- | xargs -d '\n' file 2>/dev/null | grep -E "$TIPO|shell script" | head -n 1 | cut -d':' -f1)
+							
+				run_game
+					
+			elif [ "$PLATFORM" == "Windows" ]; then
+				TARGET=$(find "$GAMES/$GAME_DIR" -maxdepth 2 -type f -iname "*.exe" \
+				! -path "*/_CommonRedist/*" ! -path "*/Redist/*" \
+				! -iname "*CrashHandler*" ! -iname "*launcher*" \
+				! -iname "*setup*" ! -iname "*unins*" \
+				-printf "%s %p\n" | sort -rn | head -n 1 | cut -d' ' -f2-)
+
+    				run_game
+			fi
+		else
+			echo "$LIB_ERROR $GAMES/$GAME_DIR"
+			read -p "$ENTER_MENU"
+			return
+		fi
+	
+	}
+
 	submenu_lib(){ 
 	
 	while true; do
@@ -15,6 +62,7 @@ source "$SOURCE/engine.sh"
 	echo "$LIB_GAME $GAME_NAME"
 	echo "$LIB_DECO2"
 	echo "$LIB_PLAT $PLATFORM | AppID: $APPID"
+	[[ -n "$ARGS" ]] && echo "$LIB_ARGS $ARGS" | fold -s -w 41
 	echo "$LIB_DECO2"
 	echo "$LIB_SUBOPTION"
 	echo "$LIB_DECO"
@@ -25,34 +73,21 @@ source "$SOURCE/engine.sh"
 				clear
 				return
 			;;
-			1)
-				if [ -d "$GAMES/$GAME_NAME" ]; then
-					ARCHIVE="$(uname -m)"
-					if [ "$PLATFORM" == "Linux" ]; then
-					[[ "$ARCHIVE" == "x86_64" ]] && TIPO="ELF 64-bit" || TIPO="ELF 32-bit"
-					TARGET=$(find "$GAMES/$GAME_NAME" -maxdepth 2 -type f -executable ! -name "*.so*" ! -name "*.dll" -printf "%s %p\n" | sort -rn | cut -d' ' -f2- | xargs -d '\n' file 2>/dev/null | grep -E "$TIPO|shell script" | head -n 1 | cut -d':' -f1)
-					chmod +x "$TARGET"
-					(cd "$GAMES/$GAME_NAME" && "$TARGET")
-					continue
-					
-				elif [ "$PLATFORM" == "Windows" ]; then
-					TARGET=$(find "$GAMES/$GAME_NAME" -maxdepth 2 -type f -iname "*.exe" \
-					! -path "*/_CommonRedist/*" ! -path "*/Redist/*" \
-					! -iname "*CrashHandler*" ! -iname "*launcher*" \
-					! -iname "*setup*" ! -iname "*unins*" \
-					-printf "%s %p\n" | sort -rn | head -n 1 | cut -d' ' -f2-)
-
-    					(cd "$(dirname "$TARGET")" && WINEPREFIX="$UMU/prefixes/$GAME_NAME" GAMEID="umu-$APPID" UMU_NO_RUNTIME=1 "$UMU/umu-run" "$TARGET")
-					continue
+			1)	
+				if [ -n "$CUSTOM_EXE" ]; then
+					if [ -f "$CUSTOM_EXE" ]; then
+						TARGET="$CUSTOM_EXE"
+						run_game
+					else
+						echo "$LIB_ERROR $CUSTOM_EXE"
+						read -p "$ENTER_MENU"
+						continue
 					fi
 				else
-					echo "$LIB_ERROR $GAMES/$GAME_NAME"
-					read -p "$ENTER_MENU"
-					continue
+					suboption_game
 				fi
 			;;
 			2)	
-				GAME_DIR="$(echo "$GAME_NAME" | tr -d ':/\\*?"<>|')"
 				while true; do
 				read -p "$LIB_UPD " CONFIRM
 					if [[ "$CONFIRM" == [YySs] ]]; then
@@ -74,7 +109,7 @@ source "$SOURCE/engine.sh"
 					if [[ "$DELETEGAME" == [YySs] ]]; then
 						read -p "$LIB_DEL_CONFIRM " DELETEGAME
 							if [[ "$DELETEGAME" == "$DELETE" ]]; then
-								rm -rf "$GAMES/$GAME_NAME"
+								rm -rf "$GAMES/$GAME_DIR"
 								sed -i "/^${APPID}|/d" "$GAMES/library.conf"
 								unset DELETEGAME
 								break
@@ -91,6 +126,54 @@ source "$SOURCE/engine.sh"
 					fi
 				done
 				return
+			;;
+			4)	
+				while true; do
+				unset OPTION
+				read -p "$LIB_CUSTOMEXE " OPTION
+					if [[ "$OPTION" == "$CUSTOM_EXEDEL" ]]; then
+						unset CUSTOM_EXE
+						sed -i "s#^${APPID}|.*#${APPID}|${GAME_NAME}|${PLATFORM}|${CUSTOM_EXE}|${ARGS}#" "$GAMES/library.conf"
+						break
+					elif [[ "$OPTION" == "$CUSTOM_EXENEW" ]]; then
+						read -p "$LIB_CUSTOMEXE2 $GAME_NAME? $YES_NOT: " OPTION
+							if [[ "$OPTION" == [YySs] ]]; then
+								unset CUSTOM_EXE
+								read -p "$LIB_CUSTOMEXE3 " CUSTOM_EXE
+								sed -i "s#^${APPID}|.*#${APPID}|${GAME_NAME}|${PLATFORM}|${CUSTOM_EXE}|${ARGS}#" "$GAMES/library.conf"
+								break
+							elif [[ "$OPTION" == [Nn] ]]; then
+								break
+							else
+								echo "$INVALID_VALUE"
+								read -p "$ENTER_RETRY"
+								continue
+							fi
+					else
+						echo "$INVALID_VALUE"
+						read -p "$ENTER_RETRY"
+						continue
+					fi
+				done
+			;;
+			5)	
+				while true; do
+					unset OPTION
+					read -p "$LIB_ARGSNEW $YES_NOT " OPTION
+						if [[ "$OPTION" == [YySs] ]]; then
+							echo "$LIB_ARGSHINT"
+							read -p "$LIB_ARGSALERT: " ARGS
+							sed -i "s#^${APPID}|.*#${APPID}|${GAME_NAME}|${PLATFORM}|${CUSTOM_EXE}|${ARGS}#" "$GAMES/library.conf"
+							break
+						elif [[ "$OPTION" == [Nn] ]]; then
+							break
+						else
+							echo "$INVALID_VALUE"
+							read -p "$ENTER_RETRY"
+							continue
+						fi
+				done
+				continue
 			;;
 			*)
 				echo "$INVALID_VALUE"
@@ -139,6 +222,9 @@ case "$OPTION" in
 		APPID=$(echo "$LINE" | cut -d'|' -f1)
 		GAME_NAME=$(echo "$LINE" | cut -d'|' -f2)
 		PLATFORM=$(echo "$LINE" | cut -d'|' -f3)
+		CUSTOM_EXE=$(echo "$LINE" | cut -d'|' -f4)
+		ARGS=$(echo "$LINE" | cut -d'|' -f5)
+		GAME_DIR="$(echo "$GAME_NAME" | tr -d ':/\\*?"<>|')"
 		
 		submenu_lib
 		continue

@@ -44,6 +44,8 @@ LIB_GAME="Gestionando:"
 LIB_SUBOPTION="1- Iniciar juego
 2- Actualizar juego
 3- Desinstalar juego
+4- Configurar ejecutable manual
+5- Definir parámetros de lanzamiento
 0- Volver al menú principal"
 
 LIB_UPD="¿Actualizar el juego? (S/N):"
@@ -52,7 +54,18 @@ LIB_DEL="¿Realmente quieres eliminar"
 LIB_DEL_CONFIRM="Para confirmar la eliminación escribe DESINSTALAR:"
 LIB_ERROR="El juego no se encontró en"
 
+LIB_CUSTOMEXE="Escriba CONTINUAR para indicar o escriba BORRAR para eliminar el ejecutable manual actual:"
+LIB_CUSTOMEXE2="¿Desea indicar un ejecutable manual para"
+LIB_CUSTOMEXE3="Indique la ruta al ejecutable:"
+
 DELETE="DESINSTALAR"
+CUSTOM_EXEDEL="BORRAR"
+CUSTOM_EXENEW="CONTINUAR"
+
+LIB_ARGS="Argumentos:"
+LIB_ARGSNEW="¿Añadir nuevos argumentos?"
+LIB_ARGSHINT="CONSEJO: Utilice las variables exactamente como lo haría en Steam"
+LIB_ARGSALERT="Tenga en cuenta que los nuevos valores sobrescriben los antiguos por COMPLETO"
 
 #INSTALADOR
 

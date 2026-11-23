@@ -115,8 +115,8 @@ suboption_goldberg
 					suboption_goldberg2
 
 					sed -i "/^${APPID}|/d" "$GAMES/library.conf" 2>/dev/null
+					echo "$APPID|$GAME_NAME|$PLATFORM||" >> "$GAMES/library.conf"
 					read -p "$ENG_SUCCESS"
-					echo "$APPID|$GAME_NAME|$PLATFORM" >> "$GAMES/library.conf"
 					clear
 					exec "$FIRST"
 				else

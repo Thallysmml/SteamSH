@@ -44,6 +44,8 @@ LIB_GAME="Managing:"
 LIB_SUBOPTION="1- Launch game
 2- Update game
 3- Uninstall game
+4- Configure manual executable
+5- Set launch options
 0- Back to main menu"
 
 LIB_UPD="Update game? (Y/N):"
@@ -52,7 +54,18 @@ LIB_DEL="Do you really want to delete"
 LIB_DEL_CONFIRM="To confirm deletion, type UNINSTALL:"
 LIB_ERROR="The game was not found in"
 
+LIB_CUSTOMEXE="Type PROCEED to set or type DELETE to remove the current manual executable:"
+LIB_CUSTOMEXE2="Do you want to set a manual executable for"
+LIB_CUSTOMEXE3="Enter the path to the executable:"
+
 DELETE="UNINSTALL"
+CUSTOM_EXEDEL="DELETE"
+CUSTOM_EXENEW="PROCEED"
+
+LIB_ARGS="Arguments:"
+LIB_ARGSNEW="Add new arguments?"
+LIB_ARGSHINT="TIP: Use the variables just as you would on Steam"
+LIB_ARGSALERT="Note that new values COMPLETELY overwrite the old ones"
 
 #INSTALLER
 
