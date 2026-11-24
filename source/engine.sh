@@ -107,7 +107,7 @@ submenu_eng(){ GAME_NAME=$(curl -s "https://store.steampowered.com/api/appdetail
 				
 suboption_goldberg
 				
-			GAME_DIR="$(echo "$GAME_NAME" | tr -d ':/\\*?"<>|')"
+			GAME_DIR="$(echo "$GAME_NAME" | tr -d ':/\\*?"<>|&')"
 			steamcmd +@sSteamCmdForcePlatformType "$PLATFORM" +force_install_dir "$GAMES/$GAME_DIR" +login "$USER_STEAM" +app_update "$APPID" validate +quit
 
 				if [ $? -eq 0 ] && [ -d "$GAMES/$GAME_DIR" ]; then	
