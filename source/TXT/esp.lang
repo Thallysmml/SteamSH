@@ -1,0 +1,94 @@
+#GLOBAL
+
+ENTER="Presiona ENTER para continuar"
+ENTER_Q="Presiona ENTER para continuar o Q para volver..."
+ENTER_RETRY="Presiona ENTER para intentarlo de nuevo..."
+ENTER_MENU="Presiona ENTER para volver al menú..."
+INVALID_VALUE="Por favor, introduce un valor válido"
+CHOOSE="Elige una opción:"
+YES_NOT="(S/N)"
+GLOBAL_SEC="Entrada no válida, reiniciando menú..."
+
+#INICIALIZADOR
+
+DEFAULT_INI="¿Realmente deseas seleccionar el predeterminado?"
+USERNAME_INI="Para finalizar, indica tu nombre de usuario de Steam (no es el apodo, es el usuario):"
+USERCONFIRMATION_INI="Confirmar nombre de usuario:"
+
+#MENU PRINCIPAL
+
+MENU="=======================================
+       GESTOR DE JUEGOS DE STEAM
+=======================================
+1- Instalar nuevos juegos
+2- Biblioteca
+3- Steam Workshop
+4- Reconfigurar idioma y apodo
+0- Cancelar operación
+======================================="
+
+MENU_ERROR="El archivo de la instancia no se encontró en"
+MENU_SECURITY="¿Estás seguro de que quieres borrar el idioma configurado y el nombre de usuario de Steam?"
+MENU_SECURITY2="Escribe RECONFIGURAR para confirmar:"
+
+RECONFIGURE="RECONFIGURAR"
+
+#BIBLIOTECA
+
+LIB_DECO="========================================="
+LIB_DECO2="-----------------------------------------"
+LIB_NAME="           BIBLIOTECA DE STEAM"
+LIB_BACKTO="0- Volver al menú principal"
+LIB_PLAT="Plataforma:"
+LIB_GAME="Gestionando:"
+LIB_SUBOPTION="1- Iniciar juego
+2- Actualizar juego
+3- Desinstalar juego
+4- Configurar ejecutable manual
+5- Definir parámetros de lanzamiento
+0- Volver al menú principal"
+
+LIB_UPD="¿Actualizar el juego? (S/N):"
+
+LIB_DEL="¿Realmente quieres eliminar"
+LIB_DEL_CONFIRM="Para confirmar la eliminación escribe DESINSTALAR:"
+LIB_ERROR="El juego no se encontró en"
+
+LIB_CUSTOMEXE="Escriba CONTINUAR para indicar o escriba BORRAR para eliminar el ejecutable manual actual:"
+LIB_CUSTOMEXE2="¿Desea indicar un ejecutable manual para"
+LIB_CUSTOMEXE3="Indique la ruta al ejecutable:"
+
+DELETE="DESINSTALAR"
+CUSTOM_EXEDEL="BORRAR"
+CUSTOM_EXENEW="CONTINUAR"
+LIB_CUSTOM_EXE="Ruta:"
+
+LIB_ARGS="Argumentos:"
+LIB_ARGSNEW="¿Añadir nuevos argumentos?"
+LIB_ARGSHINT="CONSEJO: Utilice las variables exactamente como lo haría en Steam"
+LIB_ARGSALERT="Tenga en cuenta que los nuevos valores sobrescriben los antiguos por COMPLETO"
+
+#INSTALADOR
+
+INS="=========================================
+       INSTALADOR DE JUEGOS DE STEAM
+========================================="
+INS_1="0- Menú Principal
+========================================="
+INS_2="Introduce el APPID de un juego de tu biblioteca de STEAM:"
+
+#ENGINE
+
+ENG_SUCCESS="El juego se instaló correctamente, presiona ENTER para volver al menú"
+
+ENG_GOLDOPT="¿Deseas aplicar Goldberg Emulator? (S/N):"
+ENG_GOLDTRUE="Goldberg Emulator aplicado con éxito"
+ENG_GOLDFALSE="No se pudo aplicar Goldberg Emulator (No se encontró ninguna API)"
+
+ENG_INVALID="El AppID introducido no se encontró en la base de datos de Steam"
+ENG_CONFIRM="¿El juego es"
+ENG_PLAT="¿Usar versión de Linux o Windows? (L/W): "
+
+ENG_ERRO="Algo salió mal en tu instalación, intenta"
+ENG_ERRO2="reconfigurar tu nombre de usuario de Steam configurado en la primera ejecución"
+
