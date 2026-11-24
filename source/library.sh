@@ -232,7 +232,7 @@ case "$OPTION" in
 		PLATFORM=$(echo "$LINE" | cut -d'|' -f3)
 		CUSTOM_EXE=$(echo "$LINE" | cut -d'|' -f4)
 		ARGS=$(echo "$LINE" | cut -d'|' -f5)
-		GAME_DIR="$(echo "$GAME_NAME" | tr -d ':/\\*?"<>|')"
+		GAME_DIR="$(echo "$GAME_NAME" | tr -d ':/\\*?"<>|&')"
 		
 		submenu_lib
 		continue
